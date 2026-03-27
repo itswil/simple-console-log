@@ -2,6 +2,7 @@ import path from 'path';
 import * as vscode from 'vscode';
 import { insertConsoleLog } from './helpers/insertConsoleLog';
 import { isSupportedFileExtension } from './helpers/isSupportedFileExtension';
+import { isSupportedLanguageId } from './helpers/isSupportedLanguageId';
 
 export function activate(context: vscode.ExtensionContext) {
   const command = vscode.commands.registerCommand('fastConsoleLog.log', () => {
@@ -12,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    if (!isSupportedFileExtension(path.extname(editor.document.fileName))) {
+    if (!isSupportedLanguageId(editor.document.languageId) && !isSupportedFileExtension(path.extname(editor.document.fileName))) {
       vscode.window.showInformationMessage("Fast Console Log only supports JS and TS files.");
       return;
     }
