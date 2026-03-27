@@ -10,17 +10,17 @@ Quick console log shortcut for your JavaScript/TypeScript
 ## Requirements
 
 Fast Console Log only works with the following file types:
-  -`.js`,
-  -`.jsx`,
-  -`.ts`,
-  -`.tsx`,
-  -`.mjs`,
-  -`.cjs`,
-  -`.mts`,
-  -`.cts`,
-  -`.astro`,
-  -`.svelte`,
-  -`.vue`,
+  - `.js`
+  - `.jsx`
+  - `.ts`
+  - `.tsx`
+  - `.mjs`
+  - `.cjs`
+  - `.mts`
+  - `.cts`
+  - `.astro`
+  - `.svelte`
+  - `.vue`
 
 ## Release Notes
 
