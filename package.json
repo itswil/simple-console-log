@@ -1,8 +1,8 @@
 {
-  "name": "fastlog",
-  "displayName": "fastlog",
-  "description": "Fast console logs",
-  "version": "0.0.1",
+  "name": "fast-console-log",
+  "displayName": "Fast Console Log",
+  "description": "Quick console log shortcut for your JavaScript/TypeScript",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.110.0"
   },
@@ -38,13 +38,13 @@
   "contributes": {
     "commands": [
       {
-        "command": "fastlog.helloWorld",
-        "title": "Hello World"
+        "command": "fastConsoleLog.log",
+        "title": "Fast Console Log: Insert console log"
       }
     ],
     "keybindings": [
       {
-        "command": "fastlog.helloWorld",
+        "command": "fastConsoleLog.log",
         "key": "ctrl+alt+l",
         "when": "editorTextFocus"
       }

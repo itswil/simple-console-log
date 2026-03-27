@@ -4,7 +4,7 @@ import { insertConsoleLog } from './helpers/insertConsoleLog';
 import { isSupportedFileExtension } from './helpers/isSupportedFileExtension';
 
 export function activate(context: vscode.ExtensionContext) {
-  const command = vscode.commands.registerCommand('fastlog.helloWorld', () => {
+  const command = vscode.commands.registerCommand('fastConsoleLog.log', () => {
 
     const editor = vscode.window.activeTextEditor;
 
@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     if (!isSupportedFileExtension(path.extname(editor.document.fileName))) {
-      vscode.window.showInformationMessage("FastLog only supports JS and TS files.");
+      vscode.window.showInformationMessage("Fast Console Log only supports JS and TS files.");
       return;
     }
 

@@ -1,6 +1,6 @@
 # 🐸 Fast Console Log
 
-Quick `console.log()` in your JavaScript/TypeScript
+Quick console log shortcut for your JavaScript/TypeScript
 
 ## Features
 
