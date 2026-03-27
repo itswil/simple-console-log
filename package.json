@@ -7,15 +7,46 @@
     "vscode": "^1.110.0"
   },
   "categories": [
-    "Other"
+    "Debuggers",
+    "Keymaps",
+    "Programming Languages",
+    "Snippets"
   ],
-  "activationEvents": [],
+  "keywords": [
+    "console log",
+    "logging",
+    "debug",
+    "debugging",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "nodejs",
+    "astro",
+    "react",
+    "svelte",
+    "vue"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "fastlog.helloWorld",
         "title": "Hello World"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "fastlog.helloWorld",
+        "key": "ctrl+alt+l",
+        "when": "editorTextFocus"
       }
     ]
   },
@@ -28,13 +59,14 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.110.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "typescript-eslint": "^8.56.1",
-    "eslint": "^9.39.3",
-    "typescript": "^5.9.3",
+    "@types/vscode": "^1.110.0",
     "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.39.3",
+    "path": "^0.12.7",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
   }
 }

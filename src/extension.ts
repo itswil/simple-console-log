@@ -1,26 +1,57 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+import path from 'path';
 import * as vscode from 'vscode';
+import { insertConsoleLog } from './helpers/insertConsoleLog';
+import { isSupportedFileExtension } from './helpers/isSupportedFileExtension';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+  const command = vscode.commands.registerCommand('fastlog.helloWorld', () => {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "fastlog" is now active!');
+    const editor = vscode.window.activeTextEditor;
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('fastlog.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from fastlog!');
-	});
+    if (!editor) {
+      return;
+    }
 
-	context.subscriptions.push(disposable);
+    if (!isSupportedFileExtension(path.extname(editor.document.fileName))) {
+      vscode.window.showInformationMessage("FastLog only supports JS and TS files.");
+      return;
+    }
+
+    const document = editor.document;
+    const selection = editor.selection;
+
+    if (!selection.isEmpty) {
+      // Case 1: User has text selected (could be multiple words/lines)
+      const variableRegex = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
+      const selectedText = document.getText(selection);
+
+      if (selectedText) {
+        if (variableRegex.test(selectedText)) {
+          insertConsoleLog(editor, selectedText);
+        } else {
+          vscode.window.showWarningMessage(`"${selectedText}" cannot be logged.`);
+        }
+      }
+    } else {
+      // Case 2: No text is selected
+      const wordRange = document.getWordRangeAtPosition(selection.active);
+      const line = document.lineAt(selection.active.line);
+
+      if (wordRange) {
+        // Case 2.1: Word found under cursor
+        const word = document.getText(wordRange);
+        insertConsoleLog(editor, word);
+      } else if (line.isEmptyOrWhitespace) {
+        // Case 2.2: Cursor on empty line
+        insertConsoleLog(editor, "");
+      } else {
+        vscode.window.showWarningMessage("No word or selection found.");
+      }
+    }
+
+  });
+
+  context.subscriptions.push(command);
 }
 
-// This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
