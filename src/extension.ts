@@ -1,6 +1,7 @@
 import path from 'path';
 import * as vscode from 'vscode';
 import { insertConsoleLog } from './helpers/insertConsoleLog';
+import { isLoggableSelection } from './helpers/isLoggableSelection';
 import { isSupportedFileExtension } from './helpers/isSupportedFileExtension';
 import { isSupportedLanguageId } from './helpers/isSupportedLanguageId';
 
@@ -15,7 +16,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     if (!isSupportedLanguageId(editor.document.languageId) &&
       !isSupportedFileExtension(path.extname(editor.document.fileName).toLowerCase())) {
-      vscode.window.showInformationMessage("Fast Console Log: only JS and TS files are supported.");
+      vscode.window.showInformationMessage("Fast Console Log: Only JS and TS files are supported.");
       return;
     }
 
@@ -24,14 +25,14 @@ export function activate(context: vscode.ExtensionContext) {
 
     if (!selection.isEmpty) {
       // Case 1: User has text selected (could be multiple words/lines)
-      const variableRegex = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
+
       const selectedText = document.getText(selection);
 
       if (selectedText) {
-        if (variableRegex.test(selectedText)) {
+        if (isLoggableSelection(selectedText)) {
           insertConsoleLog(editor, selectedText);
         } else {
-          vscode.window.showWarningMessage(`Fast Console Log: this text selection cannot be logged.`);
+          vscode.window.showWarningMessage(`Fast Console Log: Text selection cannot be logged.`);
         }
       }
     } else {
