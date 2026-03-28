@@ -1,6 +1,6 @@
 # 🐸 Fast Console Log
 
-The simplest console log shortcut for your JavaScript/TypeScript. `Ctrl` `Alt` `l` is all you need!
+The simplest console log keyboard shortcut for your JavaScript/TypeScript. `Ctrl` `Alt` `l` is all you need!
 
 ## Usage
 
