@@ -5,7 +5,7 @@ import { isSupportedFileExtension } from './helpers/isSupportedFileExtension';
 import { isSupportedLanguageId } from './helpers/isSupportedLanguageId';
 
 export function activate(context: vscode.ExtensionContext) {
-  const command = vscode.commands.registerCommand('fastConsoleLog.log', () => {
+  const command = vscode.commands.registerCommand('simpleConsoleLog.log', () => {
 
     const editor = vscode.window.activeTextEditor;
 
@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     if (!isSupportedLanguageId(editor.document.languageId) &&
       !isSupportedFileExtension(path.extname(editor.document.fileName).toLowerCase())) {
-      vscode.window.showInformationMessage("Fast Console Log: Only JS and TS files are supported.");
+      vscode.window.showInformationMessage("Simple Console Log: Only JS and TS files are supported.");
       return;
     }
 
@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
           const logStatement = buildLogStatement(document, activeLine, selectedText);
           insertLogStatement(editor, document, activeLine, logStatement);
         } else {
-          vscode.window.showWarningMessage(`Fast Console Log: Text selection cannot be logged.`);
+          vscode.window.showWarningMessage(`Simple Console Log: Text selection cannot be logged.`);
         }
       }
     } else {
@@ -51,7 +51,7 @@ export function activate(context: vscode.ExtensionContext) {
         const logStatement = buildLogStatement(document, activeLine, "");
         insertLogStatement(editor, document, activeLine, logStatement);
       } else {
-        vscode.window.showWarningMessage("Fast Console Log: No word or selection found.");
+        vscode.window.showWarningMessage("Simple Console Log: No word or selection found.");
       }
     }
   });
