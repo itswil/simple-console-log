@@ -1,8 +1,10 @@
 # 🐸 Simple Console Log
 
-The simplest console log shortcut for your JavaScript/TypeScript. `Ctrl` `Alt` `l` is all you need!
+The simplest console log shortcut for your JavaScript/TypeScript.
 
 ## Usage
+
+![Usage demo](./images/usage.gif)
 
 1. Place cursor on a variable.
 
@@ -10,7 +12,9 @@ The simplest console log shortcut for your JavaScript/TypeScript. `Ctrl` `Alt` `
 - Windows/Linux: `Ctrl` `Alt` `l` 
 - Mac: `Ctrl` `Option` `l` 
 
-=> `console.log("🐸 count:", count);`
+=> 🪄 ✨ `console.log('🐸 count:', count);`
+
+Works for any JavaScript, JSX, TypeScript, TSX file as well as Astro, Svelte, and Vue.
 
 ## Requirements
 
