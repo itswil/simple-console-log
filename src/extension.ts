@@ -1,21 +1,24 @@
-import path from 'path';
-import * as vscode from 'vscode';
-import { isLoggableSelection } from './helpers/isLoggableSelection';
-import { isSupportedFileExtension } from './helpers/isSupportedFileExtension';
-import { isSupportedLanguageId } from './helpers/isSupportedLanguageId';
+import path from "path";
+import * as vscode from "vscode";
+import { isLoggableSelection } from "./helpers/isLoggableSelection";
+import { isSupportedFileExtension } from "./helpers/isSupportedFileExtension";
+import { isSupportedLanguageId } from "./helpers/isSupportedLanguageId";
 
 export function activate(context: vscode.ExtensionContext) {
-  const command = vscode.commands.registerCommand('simpleConsoleLog.log', () => {
-
+  const command = vscode.commands.registerCommand("simpleConsoleLog.log", () => {
     const editor = vscode.window.activeTextEditor;
 
     if (!editor) {
       return;
     }
 
-    if (!isSupportedLanguageId(editor.document.languageId) &&
-      !isSupportedFileExtension(path.extname(editor.document.fileName).toLowerCase())) {
-      vscode.window.showInformationMessage("Simple Console Log: Only JS and TS files are supported.");
+    if (
+      !isSupportedLanguageId(editor.document.languageId) &&
+      !isSupportedFileExtension(path.extname(editor.document.fileName).toLowerCase())
+    ) {
+      vscode.window.showInformationMessage(
+        "Simple Console Log: Only JS and TS files are supported.",
+      );
       return;
     }
 
@@ -59,18 +62,27 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(command);
 }
 
-export function deactivate() { }
+export function deactivate() {}
 
-export const buildLogStatement = (document: vscode.TextDocument, lineIndex: number, textSelection: string) => {
+export const buildLogStatement = (
+  document: vscode.TextDocument,
+  lineIndex: number,
+  textSelection: string,
+) => {
   const lineAt = document.lineAt(lineIndex);
   const indentation = lineAt.text.substring(0, lineAt.firstNonWhitespaceCharacterIndex);
   return `${indentation}console.log('🐸 ${textSelection}:', ${textSelection});`;
 };
 
-export const insertLogStatement = (editor: vscode.TextEditor, document: vscode.TextDocument, lineIndex: number, logStatement: string) => {
+export const insertLogStatement = (
+  editor: vscode.TextEditor,
+  document: vscode.TextDocument,
+  lineIndex: number,
+  logStatement: string,
+) => {
   const lineAt = document.lineAt(lineIndex);
 
-  editor.edit(editBuilder => {
+  editor.edit((editBuilder) => {
     // If it's the last line of the file, we need to insert a newline BEFORE the log
     if (lineIndex === document.lineCount - 1) {
       editBuilder.insert(lineAt.range.end, `\n${logStatement}`);

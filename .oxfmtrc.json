@@ -1,0 +1,3 @@
+{
+  "ignorePatterns": ["out/**", "*.min.js", "package.json", "*.md"]
+}

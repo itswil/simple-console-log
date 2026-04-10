@@ -5,7 +5,7 @@ const supportedLanguageId = [
   "typescriptreact",
   "astro",
   "svelte",
-  "vue"
+  "vue",
 ];
 
 export const isSupportedLanguageId = (id: string) => supportedLanguageId.includes(id) || false;

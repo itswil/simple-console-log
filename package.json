@@ -3,6 +3,7 @@
   "displayName": "Simple Console Log for JS/TS",
   "description": "The simplest console log shortcut for your JavaScript/TypeScript",
   "version": "1.0.1",
+  "type": "module",
   "publisher": "itswil",
   "icon": "images/icon.png",
   "engines": {
@@ -62,7 +63,10 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src",
+    "fmt": "oxfmt --check",
+    "fmt:fix": "oxfmt",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
     "test": "vscode-test"
   },
   "devDependencies": {
@@ -71,9 +75,9 @@
     "@types/vscode": "^1.110.0",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
-    "eslint": "^10.1.0",
+    "oxfmt": "^0.44.0",
+    "oxlint": "^1.59.0",
     "path": "^0.12.7",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1"
+    "typescript": "^5.9.3"
   }
 }

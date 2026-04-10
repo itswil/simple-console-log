@@ -1,8 +1,8 @@
-import * as assert from 'assert';
-import { isLoggableSelection } from './isLoggableSelection';
+import * as assert from "assert";
+import { isLoggableSelection } from "./isLoggableSelection";
 
-suite('isLoggableSelection', () => {
-  test('returns true for valid identifiers', () => {
+suite("isLoggableSelection", () => {
+  test("returns true for valid identifiers", () => {
     assert.strictEqual(isLoggableSelection("foo"), true);
     assert.strictEqual(isLoggableSelection("bar"), true);
     assert.strictEqual(isLoggableSelection("_private"), true);
@@ -16,7 +16,7 @@ suite('isLoggableSelection', () => {
     assert.strictEqual(isLoggableSelection("#myPrivateProp"), true);
   });
 
-  test('returns true for valid expressions', () => {
+  test("returns true for valid expressions", () => {
     assert.strictEqual(isLoggableSelection("foo.bar"), true);
     assert.strictEqual(isLoggableSelection("this.user.profile.id"), true);
     assert.strictEqual(isLoggableSelection("foo[0]"), true);
@@ -31,7 +31,7 @@ suite('isLoggableSelection', () => {
     assert.strictEqual(isLoggableSelection("data['key']"), true);
   });
 
-  test('returns false for invalid selections', () => {
+  test("returns false for invalid selections", () => {
     assert.strictEqual(isLoggableSelection("123"), false);
     assert.strictEqual(isLoggableSelection("foo-bar"), false);
     assert.strictEqual(isLoggableSelection("foo bar"), false);

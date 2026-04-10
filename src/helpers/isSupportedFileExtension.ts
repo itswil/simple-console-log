@@ -12,4 +12,5 @@ const supportedFileExtensions = [
   ".vue",
 ];
 
-export const isSupportedFileExtension = (extension: string) => supportedFileExtensions.includes(extension) || false;
+export const isSupportedFileExtension = (extension: string) =>
+  supportedFileExtensions.includes(extension) || false;
