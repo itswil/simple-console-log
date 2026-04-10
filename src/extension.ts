@@ -62,7 +62,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(command);
 }
 
-export function deactivate() { }
+export function deactivate() {}
 
 export const buildLogStatement = (
   document: vscode.TextDocument,

@@ -1,3 +1,3 @@
 {
-  "ignorePatterns": ["out/**", "*.min.js", "package.json", "*.md"]
+  "ignorePatterns": ["out/**", "*.min.js", "package.json", "*.md", "sample-workspace/**/*.ts"]
 }
