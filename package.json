@@ -2,7 +2,7 @@
   "name": "simple-console-log-frog",
   "displayName": "Simple Console Log for JS/TS",
   "description": "The simplest console log shortcut for your JavaScript/TypeScript",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "publisher": "itswil",
   "icon": "images/icon.png",
@@ -67,7 +67,9 @@
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "pretest": "pnpm compile && pnpm compile:test",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "package:pre": "vsce package --pre-release --no-dependencies",
+    "publish:pre": "vsce publish --pre-release --no-dependencies"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
