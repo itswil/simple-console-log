@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 import * as vscode from "vscode";
 import { isLoggableSelection } from "./helpers/isLoggableSelection";
 import { isSupportedFileExtension } from "./helpers/isSupportedFileExtension";
@@ -62,7 +62,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(command);
 }
 
-export function deactivate() {}
+export function deactivate() { }
 
 export const buildLogStatement = (
   document: vscode.TextDocument,
