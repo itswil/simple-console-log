@@ -10,3 +10,4 @@ vsc-extension-quickstart.md
 **/.vscode-test.*
 dist/**/*.test.cjs
 images/icon-large.png
+images/usage.gif
