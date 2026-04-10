@@ -65,7 +65,7 @@
     "fmt:fix": "oxfmt",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "pretest": "pnpm compile && pnpm lint",
+    "pretest": "pnpm compile && pnpm lint:fix",
     "test": "vscode-test"
   },
   "devDependencies": {

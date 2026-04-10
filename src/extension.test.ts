@@ -108,3 +108,73 @@ suite("insertLogStatement", () => {
     assert.strictEqual(insertCalls[0].position.character, 0);
   });
 });
+
+suite("integration", () => {
+  test("should insert log with variable name in TypeScript", async () => {
+    const document = await vscode.workspace.openTextDocument({
+      content: "const count = 5;",
+      language: "typescript",
+    });
+
+    const onDidChange = new Promise<void>((resolve) => {
+      const disposable = vscode.workspace.onDidChangeTextDocument((e) => {
+        if (e.document === document) {
+          disposable.dispose(); // Clean up listener
+          resolve();
+        }
+      });
+    });
+
+    const editor = await vscode.window.showTextDocument(document);
+
+    const position = new vscode.Position(0, 8);
+    editor.selection = new vscode.Selection(position, position);
+
+    await vscode.commands.executeCommand("simpleConsoleLog.log");
+    await onDidChange;
+
+    const updatedText = document.getText();
+    const expectedLog = "console.log('🐸 count:', count);";
+
+    assert.ok(updatedText.includes(expectedLog), `Expected log not found. Got: ${updatedText}`);
+  });
+
+  test("should insert log with variable name in TypeScript JSX", async () => {
+    const document = await vscode.workspace.openTextDocument({
+      content: "const count = 5;",
+      language: "typescriptreact",
+    });
+
+    const onDidChange = new Promise<void>((resolve) => {
+      const disposable = vscode.workspace.onDidChangeTextDocument((e) => {
+        if (e.document === document) {
+          disposable.dispose(); // Clean up listener
+          resolve();
+        }
+      });
+    });
+
+    const editor = await vscode.window.showTextDocument(document);
+
+    const position = new vscode.Position(0, 11);
+    editor.selection = new vscode.Selection(position, position);
+
+    await vscode.commands.executeCommand("simpleConsoleLog.log");
+    await onDidChange;
+
+    const updatedText = document.getText();
+    assert.ok(updatedText.includes("console.log('🐸 count:', count);"));
+  });
+
+  test("should be active for all supported languages", async () => {
+    const supportedLanguageId = ["javascript", "typescript", "javascriptreact", "typescriptreact"];
+
+    for (const lang of supportedLanguageId) {
+      const doc = await vscode.workspace.openTextDocument({ content: "", language: lang });
+      await vscode.window.showTextDocument(doc);
+
+      const extension = vscode.extensions.getExtension("itswil.simple-console-log-frog");
+      assert.strictEqual(extension?.isActive, true, `Extension should be active for ${lang}`);
+    }
+  });
+});

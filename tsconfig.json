@@ -15,7 +15,7 @@
     "skipLibCheck": true, // Speeds up type-checking by skipping node_modules
 
     /* VS Code Extension specifics */
-    "types": ["node", "vscode"] // Ensure TS knows about both environments
+    "types": ["mocha", "node", "vscode"] // Ensure TS knows about both environments
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "out", "dist"]
