@@ -69,8 +69,8 @@
     "pretest": "pnpm compile && pnpm compile:test",
     "test": "vscode-test",
     "vscode:prepublish": "pnpm compile",
-    "package": "vsce package --no-dependencies",
-    "publish": "vsce publish --no-dependencies"
+    "vscode:package": "vsce package --no-dependencies",
+    "vscode:publish": "vsce publish --no-dependencies"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
