@@ -60,13 +60,13 @@
   },
   "scripts": {
     "compile": "tsdown",
-    "compile:test": "tsdown --out-dir ./dist-test --config ./tsdown.test.config.js",
+    "compile:test": "tsdown --config ./tsdown.test.config.js",
     "watch": "tsdown --watch",
     "fmt": "oxfmt --check",
     "fmt:fix": "oxfmt",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "pretest": "pnpm compile:test && pnpm lint:fix",
+    "pretest": "pnpm compile && pnpm compile:test",
     "test": "vscode-test"
   },
   "devDependencies": {

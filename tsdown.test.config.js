@@ -6,4 +6,5 @@ export default defineConfig({
     neverBundle: ["vscode", /^node:/],
   },
   format: ["cjs"],
+  outDir: "dist-test", // note: test runner must execute ./dist/extension.cjs as stated in package.json
 });
