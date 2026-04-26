@@ -1,7 +1,8 @@
-import * as assert from "assert";
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
 import { isSupportedFileExtension } from "./isSupportedFileExtension";
 
-suite("isSupportedFileExtension", () => {
+describe("isSupportedFileExtension", () => {
   test("returns true for supported extensions", () => {
     assert.strictEqual(isSupportedFileExtension(".js"), true);
     assert.strictEqual(isSupportedFileExtension(".ts"), true);

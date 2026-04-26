@@ -1,11 +1,12 @@
-import * as assert from "assert";
+import assert from "node:assert/strict";
+import { beforeEach, describe, test } from "node:test";
 import * as vscode from "vscode";
 import { buildLogStatement, insertLogStatement } from "./extension";
 
-suite("buildLogStatement", () => {
+describe("buildLogStatement", () => {
   let mockDocument: vscode.TextDocument;
 
-  setup(() => {
+  beforeEach(() => {
     mockDocument = {
       lineAt: (lineIndex: number) => {
         const lines = [
@@ -50,12 +51,12 @@ suite("buildLogStatement", () => {
   });
 });
 
-suite("insertLogStatement", () => {
+describe("insertLogStatement", () => {
   let mockEditor: vscode.TextEditor;
   let mockDocument: vscode.TextDocument;
   let insertCalls: Array<{ position: vscode.Position; text: string }> = [];
 
-  setup(() => {
+  beforeEach(() => {
     insertCalls = [];
     mockDocument = {
       lineCount: 5,
@@ -109,7 +110,7 @@ suite("insertLogStatement", () => {
   });
 });
 
-suite("integration", () => {
+describe("integration", () => {
   test("should insert log with variable name in TypeScript", async () => {
     const document = await vscode.workspace.openTextDocument({
       content: "const count = 5;",

@@ -1,7 +1,8 @@
-import * as assert from "assert";
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
 import { isSupportedLanguageId } from "./isSupportedLanguageId";
 
-suite("isSupportedLanguageId", () => {
+describe("isSupportedLanguageId", () => {
   test("returns true for supported language ids", () => {
     assert.strictEqual(isSupportedLanguageId("javascript"), true);
     assert.strictEqual(isSupportedLanguageId("javascriptreact"), true);

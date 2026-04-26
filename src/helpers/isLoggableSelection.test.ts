@@ -1,7 +1,8 @@
-import * as assert from "assert";
+import assert from "node:assert/strict";
+import { describe, test } from "node:test";
 import { isLoggableSelection } from "./isLoggableSelection";
 
-suite("isLoggableSelection", () => {
+describe("isLoggableSelection", () => {
   test("returns true for valid identifiers", () => {
     assert.strictEqual(isLoggableSelection("foo"), true);
     assert.strictEqual(isLoggableSelection("bar"), true);
